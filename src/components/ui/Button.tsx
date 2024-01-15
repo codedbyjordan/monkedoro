@@ -6,7 +6,7 @@ const buttonStyles = cva("px-3 py-2 w-full rounded-md transition-colors", {
   variants: {
     variant: {
       primary:
-        " bg-neutral-800 hover:bg-neutral-700 text-white font-semibold  flex justify-center",
+        "bg-neutral-800 hover:bg-neutral-700 text-white font-semibold  flex justify-center",
       stroked: "text-white border-2 hover:bg-stone-600/50",
     },
   },
