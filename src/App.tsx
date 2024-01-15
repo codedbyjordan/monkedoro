@@ -1,9 +1,11 @@
-import { createSignal, onCleanup } from "solid-js";
+import { AudioToggleButton } from "./components/AudioToggleButton";
+import { Pomodoro } from "./components/Pomodoro";
 
 export function App() {
-  const [count, setCount] = createSignal(0),
-    timer = setInterval(() => setCount(count() + 1), 1000);
-  onCleanup(() => clearInterval(timer));
-
-  return <div>{count()}</div>;
+  return (
+    <div class="w-full h-dvh bg-neutral-900 flex justify-center items-center">
+      <AudioToggleButton class="absolute top-4 left-4" />
+      <Pomodoro />
+    </div>
+  );
 }
