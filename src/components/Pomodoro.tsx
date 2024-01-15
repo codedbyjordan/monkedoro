@@ -2,14 +2,16 @@ import { Icon } from "solid-heroicons";
 import { pause, play } from "solid-heroicons/solid";
 import { Show, createSignal, onCleanup } from "solid-js";
 
-const POMODORO_TIME_IN_SECONDS = 120;
-const BREAK_TIME_IN_SECONDS = 3;
+type PomodoroProps = {
+  pomodoroTime: number;
+  breakTime: number;
+};
 
-export function Pomodoro() {
+export function Pomodoro(props: PomodoroProps) {
   const [pomodoroTimeLeft, setPomodoroTimeLeft] = createSignal(
-    POMODORO_TIME_IN_SECONDS
+    props.pomodoroTime
   );
-  const [breakTimeLeft, setBreakTimeLeft] = createSignal(BREAK_TIME_IN_SECONDS);
+  const [breakTimeLeft, setBreakTimeLeft] = createSignal(props.breakTime);
 
   const [isBreak, setIsBreak] = createSignal(false);
   const [isPaused, setIsPaused] = createSignal(false);
@@ -21,13 +23,13 @@ export function Pomodoro() {
       setBreakTimeLeft(breakTimeLeft() - 1);
       if (breakTimeLeft() === 0) {
         setIsBreak(false);
-        setPomodoroTimeLeft(POMODORO_TIME_IN_SECONDS);
+        setPomodoroTimeLeft(props.pomodoroTime);
       }
     } else {
       setPomodoroTimeLeft(pomodoroTimeLeft() - 1);
       if (pomodoroTimeLeft() === 0) {
         setIsBreak(true);
-        setBreakTimeLeft(BREAK_TIME_IN_SECONDS);
+        setBreakTimeLeft(props.breakTime);
       }
     }
   }, 1000);
