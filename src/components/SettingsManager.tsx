@@ -1,5 +1,9 @@
 import { produce } from "solid-js/store";
 import { SettingsOption, setSettings, settings } from "../settings";
+import { Modal } from "./ui/Modal";
+import { Checkbox } from "./ui/Checkbox";
+import { InputChangeEvent } from "../types";
+import { Input } from "./ui/Input";
 
 type SettingsInput =
   | {
@@ -13,7 +17,7 @@ type SettingsInput =
       checked: boolean;
     };
 
-const SETTINGS_MANAGER_LABELS: Record<SettingsOption, SettingsInput> = {
+const SETTINGS_MANAGER_OPTIONS: Record<SettingsOption, SettingsInput> = {
   pomodoroTimeInSeconds: {
     type: "number",
     label: "Pomodoro Time (in seconds)",
@@ -31,39 +35,59 @@ const SETTINGS_MANAGER_LABELS: Record<SettingsOption, SettingsInput> = {
   },
 };
 
-export function SettingsManager() {
+type SettingsManagerProps = {
+  onClose: () => void;
+};
+
+export function SettingsManager({ onClose }: SettingsManagerProps) {
   const handleSettingsChange = (
     key: SettingsOption,
-    e: Event & {
-      currentTarget: HTMLInputElement;
-      target: HTMLInputElement;
-    }
+    value: string | number | boolean
   ) => {
-    const isCheckbox = e.target.getAttribute("type") === "checkbox";
-
     setSettings(
       produce((settings) => {
-        settings[key] = isCheckbox
-          ? e.currentTarget.checked
-          : Number(e.currentTarget.value);
+        if (SETTINGS_MANAGER_OPTIONS[key].type === "number")
+          value = Number(value);
+        settings[key] = value;
       })
     );
   };
 
+  const getInputComponent = (
+    inputProps: SettingsInput,
+    key: SettingsOption
+  ) => {
+    switch (inputProps.type) {
+      case "checkbox":
+        return (
+          <Checkbox
+            checked={settings[key]}
+            onChange={(e) => handleSettingsChange(key, e)}
+          />
+        );
+      default:
+        return (
+          <Input
+            {...inputProps}
+            value={settings[key]}
+            onChange={(e: InputChangeEvent) =>
+              handleSettingsChange(key, e.target.value)
+            }
+          />
+        );
+    }
+  };
+
   return (
-    <div class="w-[500px] border-2 rounded-md p-2 text-white font-jetbrains-mono flex flex-col gap-2">
-      {Object.entries(SETTINGS_MANAGER_LABELS).map(([key, inputProps]) => {
+    <Modal title="Settings" onClose={onClose} className="w-[500px]">
+      {Object.entries(SETTINGS_MANAGER_OPTIONS).map(([key, inputProps]) => {
         return (
           <div class="flex items-center justify-between">
             <span>{inputProps.label}</span>
-            <input
-              {...inputProps}
-              class="border rounded-md bg-transparent p-1"
-              onChange={(e) => handleSettingsChange(key as SettingsOption, e)}
-            />
+            {getInputComponent(inputProps, key as SettingsOption)}
           </div>
         );
       })}
-    </div>
+    </Modal>
   );
 }

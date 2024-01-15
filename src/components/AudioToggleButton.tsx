@@ -2,17 +2,19 @@ import { produce } from "solid-js/store";
 import { setSettings, settings } from "../settings";
 import { Icon } from "solid-heroicons";
 import { speakerWave, speakerXMark } from "solid-heroicons/solid";
-import { StrokedButton } from "./ui/StrokedButton";
+import { Button } from "./ui/Button";
+import { twMerge } from "tailwind-merge";
 
 export function AudioToggleButton(props: { class?: string }) {
   return (
-    <StrokedButton
+    <Button
       onClick={() => {
         setSettings(produce((settings) => (settings.sound = !settings.sound)));
       }}
-      class={props.class}
+      variant="stroked"
+      class={twMerge("w-12 h-12", props.class)}
     >
       <Icon path={settings.sound ? speakerWave : speakerXMark} />
-    </StrokedButton>
+    </Button>
   );
 }

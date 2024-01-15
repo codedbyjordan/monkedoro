@@ -20,7 +20,7 @@ export function App() {
           </StrokedButton>
         </div>
         <Show when={isSettingsOpen()}>
-          <SettingsManager />
+          <SettingsManager onClose={() => setIsSettingsOpen(false)} />
         </Show>
       </div>
       <Pomodoro

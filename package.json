@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/howler": "^2.2.11",
+    "class-variance-authority": "^0.7.0",
     "howler": "^2.2.4",
     "solid-heroicons": "^3.2.4",
     "solid-icons": "^1.1.0",
