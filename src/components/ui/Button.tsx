@@ -2,12 +2,13 @@ import { VariantProps, cva } from "class-variance-authority";
 import { ComponentProps } from "solid-js";
 import { twMerge } from "tailwind-merge";
 
-const buttonStyles = cva({
+const buttonStyles = cva("px-3 py-2 w-full rounded-md transition-colors", {
   variants: {
-    primary:
-      " px-3 py-2 bg-neutral-800 hover:bg-neutral-700 transition-colors text-white font-semibold rounded-md flex justify-center",
-    stroked:
-      "text-white border-2 px-3 py-2 rounded-md transition-colors hover:bg-stone-600/50",
+    variant: {
+      primary:
+        " bg-neutral-800 hover:bg-neutral-700 text-white font-semibold  flex justify-center",
+      stroked: "text-white border-2 hover:bg-stone-600/50",
+    },
   },
 });
 
@@ -20,9 +21,9 @@ export function Button(props: ButtonProps) {
     <button
       class={twMerge(
         buttonStyles({
-          className,
-          ...rest,
-        })
+          variant: props.variant ?? "primary",
+        }),
+        className
       )}
       {...rest}
     >

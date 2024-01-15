@@ -4,6 +4,7 @@ import { Modal } from "./ui/Modal";
 import { Checkbox } from "./ui/Checkbox";
 import { InputChangeEvent } from "../types";
 import { Input } from "./ui/Input";
+import { For } from "solid-js";
 
 type SettingsInput =
   | {
@@ -79,15 +80,19 @@ export function SettingsManager({ onClose }: SettingsManagerProps) {
   };
 
   return (
-    <Modal title="Settings" onClose={onClose} className="w-[500px]">
-      {Object.entries(SETTINGS_MANAGER_OPTIONS).map(([key, inputProps]) => {
-        return (
-          <div class="flex items-center justify-between">
-            <span>{inputProps.label}</span>
-            {getInputComponent(inputProps, key as SettingsOption)}
-          </div>
-        );
-      })}
+    <Modal title="Settings" onClose={onClose} className="w-[550px]">
+      <div class="flex flex-col gap-2">
+        <For each={Object.entries(SETTINGS_MANAGER_OPTIONS)}>
+          {([key, inputProps]) => {
+            return (
+              <div class="flex items-center justify-between">
+                <span>{inputProps.label}</span>
+                {getInputComponent(inputProps, key as SettingsOption)}
+              </div>
+            );
+          }}
+        </For>
+      </div>
     </Modal>
   );
 }

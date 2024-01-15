@@ -1,6 +1,7 @@
 import { Icon } from "solid-heroicons";
 import { arrowPath, pause, play } from "solid-heroicons/solid";
 import { Show, createSignal, onCleanup } from "solid-js";
+import { Button } from "./ui/Button";
 
 type PomodoroProps = {
   pomodoroTime: number;
@@ -51,29 +52,23 @@ export function Pomodoro(props: PomodoroProps) {
   };
 
   return (
-    <div class="flex flex-col items-center justify-center font-jetbrains-mono font-medium text-[#8ba888] gap-2">
+    <div class="w-1/2 flex flex-col items-center justify-center font-jetbrains-mono font-medium text-[#8ba888] gap-2">
       <h1 class="text-9xl">
         <Show when={isBreak()} fallback={formatTime(pomodoroTimeLeft())}>
           {formatTime(breakTimeLeft())}
         </Show>
       </h1>
-      <button
-        class="px-3 py-2 w-full text-xl bg-neutral-800 hover:bg-neutral-700 transition-colors text-white font-semibold rounded-md flex justify-center"
-        onClick={() => setIsPaused(!isPaused())}
-      >
+      <Button onClick={() => setIsPaused(!isPaused())} class="w-1/3">
         {isPaused() ? (
           <Icon path={play} class="w-8 h-8" />
         ) : (
           <Icon path={pause} class="w-8 h-8" />
         )}
-      </button>
+      </Button>
 
-      <button
-        class="px-3 py-2 w-full text-xl bg-neutral-800 hover:bg-neutral-700 transition-colors text-white font-semibold rounded-md flex justify-center"
-        onClick={() => restartSession()}
-      >
+      <Button class="w-1/3" onClick={() => restartSession()}>
         <Icon path={arrowPath} class="w-8 h-8" />
-      </button>
+      </Button>
     </div>
   );
 }
