@@ -1,9 +1,9 @@
 import { AudioToggleButton } from "./components/AudioToggleButton";
 import { Pomodoro } from "./components/Pomodoro";
-import { SettingsManager } from "./components/SettingsManager";
-import { SessionManager } from "./components/sessions/SessionManager";
-import { handleNewSession } from "./helpers/handle-new-session";
-import { settings } from "./settings";
+import { SettingsManager } from "./settings/SettingsManager";
+import { SessionManager } from "./sessions/SessionManager";
+import { handleNewSession } from "./sessions/handle-new-session";
+import { settings } from "./settings/settings";
 
 export function App() {
   return (

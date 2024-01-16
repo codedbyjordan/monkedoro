@@ -1,7 +1,7 @@
 import { Icon } from "solid-heroicons";
 import { arrowPath, pause, play } from "solid-heroicons/solid";
 import { Show, createSignal, onCleanup } from "solid-js";
-import { Button } from "./ui/Button";
+import { Button } from "./Button";
 
 type PomodoroProps = {
   pomodoroTime: number;

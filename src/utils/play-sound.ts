@@ -1,6 +1,6 @@
 import { Howl } from "howler";
 import { HowlOptions } from "howler";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 
 export function playSound(
   file: string,

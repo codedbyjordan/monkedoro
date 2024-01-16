@@ -1,8 +1,8 @@
 import { createSignal } from "solid-js";
-import { Button } from "./ui/Button";
+import { Button } from "../components/Button";
 import { cog_8Tooth } from "solid-heroicons/solid";
 import { Icon } from "solid-heroicons";
-import { Settings } from "./settings/Settings";
+import { Settings } from "./Settings";
 
 export function SettingsManager() {
   const [isSettingsOpen, setIsSettingsOpen] = createSignal(false);
