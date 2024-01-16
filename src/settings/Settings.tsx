@@ -53,6 +53,7 @@ export function Settings(props: SettingsProps) {
         settings[key] = value;
       })
     );
+    localStorage.setItem("pomodoroSettings", JSON.stringify(settings));
   };
 
   const getInputComponent = (

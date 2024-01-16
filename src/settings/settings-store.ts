@@ -5,10 +5,16 @@ export type SettingsOption =
   | "pomodoroTimeInSeconds"
   | "breakTimeInSeconds";
 
+const DEFAULT_SETTINGS = {
+  sound: true,
+  pomodoroTimeInSeconds: 5,
+  breakTimeInSeconds: 2,
+} as const;
+
+const settingsFromLocalStorage = localStorage.getItem("pomodoroSettings");
+
 export const [settings, setSettings] = createStore<Record<SettingsOption, any>>(
-  {
-    sound: true,
-    pomodoroTimeInSeconds: 5,
-    breakTimeInSeconds: 2,
-  }
+  settingsFromLocalStorage
+    ? JSON.parse(settingsFromLocalStorage)
+    : DEFAULT_SETTINGS
 );
