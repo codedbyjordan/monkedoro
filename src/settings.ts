@@ -8,7 +8,7 @@ export type SettingsOption =
 export const [settings, setSettings] = createStore<Record<SettingsOption, any>>(
   {
     sound: true,
-    pomodoroTimeInSeconds: 1500,
-    breakTimeInSeconds: 300,
+    pomodoroTimeInSeconds: 5,
+    breakTimeInSeconds: 2,
   }
 );

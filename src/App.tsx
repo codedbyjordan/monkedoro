@@ -10,6 +10,9 @@ export function App() {
   const handleNewSession = (sessionStartTime: number) => {
     setPomodoroSessions(
       produce((pomodoroSessions) => {
+        if (pomodoroSessions.length > 0)
+          pomodoroSessions[pomodoroSessions.length - 1].endTime =
+            sessionStartTime;
         pomodoroSessions.push({
           startTime: sessionStartTime,
           endTime: null,
