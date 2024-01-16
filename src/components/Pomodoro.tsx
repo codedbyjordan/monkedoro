@@ -6,6 +6,7 @@ import { Button } from "./ui/Button";
 type PomodoroProps = {
   pomodoroTime: number;
   breakTime: number;
+  onNewSession: (sessionStartTime: number) => unknown;
 };
 
 export function Pomodoro(props: PomodoroProps) {
@@ -17,6 +18,8 @@ export function Pomodoro(props: PomodoroProps) {
   const [isBreak, setIsBreak] = createSignal(false);
   const [isPaused, setIsPaused] = createSignal(false);
 
+  props.onNewSession(Date.now());
+
   const pomodoroInterval = setInterval(() => {
     if (isPaused()) return;
 
@@ -25,6 +28,7 @@ export function Pomodoro(props: PomodoroProps) {
       if (breakTimeLeft() === 0) {
         setIsBreak(false);
         setPomodoroTimeLeft(props.pomodoroTime);
+        props.onNewSession(Date.now());
       }
     } else {
       setPomodoroTimeLeft(pomodoroTimeLeft() - 1);
