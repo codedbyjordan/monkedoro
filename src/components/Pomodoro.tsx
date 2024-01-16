@@ -59,7 +59,10 @@ export function Pomodoro(props: PomodoroProps) {
     <div class="w-1/2 flex flex-col items-center justify-center font-jetbrains-mono font-medium text-[#8ba888] gap-2">
       <h1 class="text-9xl">
         <Show when={isBreak()} fallback={formatTime(pomodoroTimeLeft())}>
-          {formatTime(breakTimeLeft())}
+          <div class="flex flex-col gap-1 justify-center">
+            <span class="uppercase text-3xl text-center">Break</span>
+            {formatTime(breakTimeLeft())}
+          </div>
         </Show>
       </h1>
       <Button onClick={() => setIsPaused(!isPaused())} class="w-1/3">
