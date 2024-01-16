@@ -11,10 +11,8 @@ const DEFAULT_SETTINGS = {
   breakTimeInSeconds: 2,
 } as const;
 
-const settingsFromLocalStorage = localStorage.getItem("pomodoroSettings");
+const localStorageSettings = localStorage.getItem("pomodoroSettings");
 
 export const [settings, setSettings] = createStore<Record<SettingsOption, any>>(
-  settingsFromLocalStorage
-    ? JSON.parse(settingsFromLocalStorage)
-    : DEFAULT_SETTINGS
+  localStorageSettings ? JSON.parse(localStorageSettings) : DEFAULT_SETTINGS
 );

@@ -5,10 +5,8 @@ type PomodoroSession = {
   endTime: number | null;
 };
 
-const localStoragePomodoroSessions = JSON.parse(
-  localStorage.getItem("pomodoroSessions") || "[]"
-);
+const localStoragePomodoroSessions = localStorage.getItem("pomodoroSessions");
 
 export const [pomodoroSessions, setPomodoroSessions] = createStore<
   PomodoroSession[]
->(localStoragePomodoroSessions);
+>(localStoragePomodoroSessions ? JSON.parse(localStoragePomodoroSessions) : []);
