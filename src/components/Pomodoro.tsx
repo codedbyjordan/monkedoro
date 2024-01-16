@@ -16,7 +16,7 @@ export function Pomodoro(props: PomodoroProps) {
   const [breakTimeLeft, setBreakTimeLeft] = createSignal(props.breakTime);
 
   const [isBreak, setIsBreak] = createSignal(false);
-  const [isPaused, setIsPaused] = createSignal(false);
+  const [isPaused, setIsPaused] = createSignal(true);
 
   props.onNewSession(Date.now());
 

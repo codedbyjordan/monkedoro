@@ -1,5 +1,8 @@
 import { For } from "solid-js";
-import { pomodoroSessions } from "./pomodoro-sessions-store";
+import {
+  pomodoroSessions,
+  setPomodoroSessions,
+} from "./pomodoro-sessions-store";
 
 export function Sessions() {
   const formatDate = (date: number) => {
@@ -12,10 +15,18 @@ export function Sessions() {
     }).format(dateObj);
   };
 
+  const clearSessions = () => {
+    setPomodoroSessions([]);
+    localStorage.setItem("pomodoroSessions", "[]");
+  };
+
   return (
-    <div class="text-white font-jetbrains-mono border-l-2 border-y-2 rounded-l-lg">
-      <div class="border-b p-2">
+    <div class="w-full text-white font-jetbrains-mono border-l-2 border-y-2 rounded-l-lg">
+      <div class="border-b px-3 py-2 flex items-center justify-between">
         <span class="text-lg font-medium">Sessions</span>
+        <button class="font-medium underline text-sm" onClick={clearSessions}>
+          Clear
+        </button>
       </div>
       <div class="px-3 py-2 flex flex-col gap-4">
         <For each={pomodoroSessions}>
