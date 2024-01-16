@@ -1,9 +1,9 @@
 import { produce } from "solid-js/store";
-import { SettingsOption, setSettings, settings } from "./settings";
-import { Modal } from "../components/Modal";
-import { Checkbox } from "../components/Checkbox";
+import { SettingsOption, setSettings, settings } from "./settings-store";
+import { Modal } from "@/components/Modal";
+import { Checkbox } from "@/components/Checkbox";
 import { InputChangeEvent } from "../types";
-import { Input } from "../components/Input";
+import { Input } from "@/components/Input";
 import { For } from "solid-js";
 
 type SettingsInput =

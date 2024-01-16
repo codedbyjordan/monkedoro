@@ -1,7 +1,7 @@
 import { Icon } from "solid-heroicons";
 import { chevronLeft, chevronRight } from "solid-heroicons/solid";
 import { Show, createSignal } from "solid-js";
-import { Button } from "../ui/Button";
+import { Button } from "@/components/Button";
 import { Sessions } from "./Sessions";
 
 export function SessionManager() {

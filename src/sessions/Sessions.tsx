@@ -1,5 +1,5 @@
 import { For } from "solid-js";
-import { pomodoroSessions } from "./pomodoro-sessions";
+import { pomodoroSessions } from "./pomodoro-sessions-store";
 
 export function Sessions() {
   const formatDate = (date: number) => {

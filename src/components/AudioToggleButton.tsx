@@ -1,8 +1,8 @@
 import { produce } from "solid-js/store";
-import { setSettings, settings } from "../settings/settings";
+import { setSettings, settings } from "@/settings/settings-store";
 import { Icon } from "solid-heroicons";
 import { speakerWave, speakerXMark } from "solid-heroicons/solid";
-import { Button } from "./Button";
+import { Button } from "@/components/Button";
 import { twMerge } from "tailwind-merge";
 
 export function AudioToggleButton(props: { class?: string }) {

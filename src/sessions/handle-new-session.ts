@@ -1,5 +1,5 @@
 import { produce } from "solid-js/store";
-import { setPomodoroSessions } from "./pomodoro-sessions";
+import { setPomodoroSessions } from "./pomodoro-sessions-store";
 
 export const handleNewSession = (sessionStartTime: number) => {
   setPomodoroSessions(
