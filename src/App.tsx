@@ -1,26 +1,11 @@
-import { produce } from "solid-js/store";
 import { AudioToggleButton } from "./components/AudioToggleButton";
 import { Pomodoro } from "./components/Pomodoro";
 import { SettingsManager } from "./components/SettingsManager";
 import { SessionManager } from "./components/sessions/SessionManager";
-import { setPomodoroSessions } from "./pomodoro-sessions";
+import { handleNewSession } from "./helpers/handle-new-session";
 import { settings } from "./settings";
 
 export function App() {
-  const handleNewSession = (sessionStartTime: number) => {
-    setPomodoroSessions(
-      produce((pomodoroSessions) => {
-        if (pomodoroSessions.length > 0)
-          pomodoroSessions[pomodoroSessions.length - 1].endTime =
-            sessionStartTime;
-        pomodoroSessions.push({
-          startTime: sessionStartTime,
-          endTime: null,
-        });
-      })
-    );
-  };
-
   return (
     <div class="w-full h-dvh bg-neutral-900 grid grid-cols-7">
       <div class="flex flex-col gap-4 p-2">
